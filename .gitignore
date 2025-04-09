@@ -1,1 +1,4 @@
+
+#Ignoring .class files
+.class
 system/bank/java/out
