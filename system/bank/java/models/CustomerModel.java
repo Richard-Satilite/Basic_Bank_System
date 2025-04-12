@@ -15,7 +15,7 @@ public class CustomerModel{
 			this.cpf = cpf.replaceAll("[^0-9], "");
 			this.accounts = new ArrayList<>();
 		} else{
-			System.out.pritln("Customer informations is invalid!");
+			System.out.println("Customer informations is invalid!");
 		}
 	}
 

@@ -54,7 +54,7 @@ public class AccountModel{
 			this.balance -= amount;
 			return amount;
 		} else{
-			System.out.prinln("Incorrect amount or insufficient balance!");
+			System.out.println("Incorrect amount or insufficient balance!");
 		}
 
 		return -1;
@@ -74,7 +74,7 @@ public class AccountModel{
 			accountToTransfer.deposit(amount);
 			System.out.println("Successful deposit!");
 		} else{
-			System.out.prinln("Failed transfer! Check the amount value or if the account is correct.");
+			System.out.println("Failed transfer! Check the amount value or if the account is correct.");
 		}
 	}
 
