@@ -31,14 +31,14 @@ public class AccountModel{
 	}
 
 	public void addCustomer(CustomerModel customer){
-		if(customer && !this.customers.contains(customer)){
+		if(customer != null && !this.customers.contains(customer)){
 			this.customers.add(customer);
 			customer.addAccount(this);
 		}
 	}
 
 	public void removeCustomer(CustomerModel customer){
-		if(customer && this.customers.contains(customer)){
+		if(customer != null && this.customers.contains(customer)){
 			this.customers.remove(customer);
 			customer.removeAccount(this);
 		}
@@ -48,16 +48,54 @@ public class AccountModel{
 		return this.balance;
 	}
 
-	public void withdraw(double amount){
+	public double withdraw(double amount){
 		
 		if(amount >= 0 && this.balance >= amount){
 			this.balance -= amount;
+			return amount;
 		} else{
 			System.out.prinln("Incorrect amount or insufficient balance!");
 		}
+
+		return -1;
 	}
 
-	public void transferAmount(double amount, int accountCode){
+	public void deposit(double amount){
+		if(amount > 0){
+			this.balance += amount
+		} else{
+			System.out.println("Incorrect deposit amount!");
+		}
+	}
+
+	public void transferAmount(double amount, AccountModel accountToTransfer){
 		
+		if(accountTotransfer != null && withdraw(amount) != -1){
+			accountToTransfer.deposit(amount);
+			System.out.println("Successful deposit!");
+		} else{
+			System.out.prinln("Failed transfer! Check the amount value or if the account is correct.");
+		}
+	}
+
+	public CustomerModel getCustomerByCPF(String CPF){
+		for(CustomerModel ctm : this.customers){
+			if(ctm.getCPF().equals(CPF)){
+				return ctm;
+			}
+		}
+
+		return null;
+	}
+
+	public String genStatement(String name){
+		
+		String content;
+		Statement statement = new Statement();
+		statement.genContent(this.balance, name);
+
+		content = statement.getContent();
+
+		return content;
 	}
 }
