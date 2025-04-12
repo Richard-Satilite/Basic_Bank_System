@@ -27,7 +27,7 @@ public class CustomerModel{
 		}
 	}
 
-	public boolean addAccount(AccountModel account){
+	public void addAccount(AccountModel account){
 		if(account && !this.accounts.contains(account)){
 			this.accounts.add(account);
 			account.addCustomer(this);
