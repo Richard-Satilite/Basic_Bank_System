@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Main{
 
-	public void main(String[] args){
+	public static void main(String[] args){
 	
-		BankModel bank = genBank("Unesp");
+		BankModel bank = new BankModel("Unesp");
 		Scanner stream = new Scanner(System.in);
 		int input;
 
@@ -37,8 +37,9 @@ public class Main{
 	}
 
 
-	private void startMessage(String bankName){
-		System.out.println("""
+	private static void startMessage(String bankName){
+		System.out.println(String.format(
+			"""
 			Hello, welcome to the %s Bank!
 
 			what do you want to do today? Choose one of the options below!
@@ -46,49 +47,65 @@ public class Main{
 			[1] - Access my account
 			[2] - Create my account
 			[3] - exit program
-		""".format(bankName));
+		""", bankName));
 	}
 
-	private int[] accountAccessData(Scanner stream){
+	private static int[] accountAccessData(Scanner stream){
 		
 		int[] infos = new int[2];
+		int agencyCode;
+		int accountCode;
+		int valid = 0;
 
-		do{
+		while (valid == 0){
+
 			System.out.print("\nType the agency code: ");
-			
-			if(stream.hasNextInt() && stream.nextInt() > 0){
-				infos[0] = stream.nextInt();
-			} else{
-				System.out.println("Invalid agency code ... Please, put a corret value!");
+
+			if(stream.hasNextInt()){
+				agencyCode = stream.nextInt();
+
+				if(agencyCode > 0){
+					valid = 1;
+					infos[0] = agencyCode;
+				}
 			}
 			
-		}while(!stream.hasNextInt() || stream.nextInt() < 0);
+			if(valid == 0){
+				System.out.println("\nInvalid agency code ... Please, put a corret value!");
+				stream.next();
+			}
+		}
 
-		do{
+		valid = 0;
+
+		while(valid == 0){
 			System.out.print("\nType the account code: ");
-			
-			if(stream.hasNextInt() && stream.nextInt() > 0){
-				infos[1] = stream.nextInt();
-			} else{
-				System.out.println("Invalid account code ... Plase, put a correct value!");
+		
+			if(stream.hasNextInt()){
+				accountCode = stream.nextInt();
+		
+				if(accountCode > 0){
+					valid = 1;
+					infos[1] = accountCode;
+				}
 			}
 
-		}while(!stream.hasNextInt() || stream.nextInt() < 0);
+			if(valid == 0){
+				System.out.println("\nInvalid account code ... Please, put a corret value!");		
+				stream.next();
+			}
+		}
 
 		return infos;
 	}
 
-	private BankModel genBank(String name){
-		return new BankModel(name);
-	}
-
-	private AccountModel accountAccess(BankModel bank,int agencyCode, int accountCode){
+	private static AccountModel accountAccess(BankModel bank,int agencyCode, int accountCode){
 		AccountModel account = bank.getAccount(agencyCode, accountCode);
 
 		return account;
 	}
 
-	private CustomerModel customerAccess(AccountModel account, String cpf){
+	private static CustomerModel customerAccess(AccountModel account, String cpf){
 		CustomerModel customer = account.getCustomerByCPF(cpf);
 
 		return customer;
