@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class Main{
 
-	public static void main(String[] args){
+	public void main(String[] args){
 	
 		BankModel bank = genBank("Unesp");
-		Scanner stream =  new Scanner();
+		Scanner stream = new Scanner(System.in);
 		int input;
 
 		do{
@@ -18,7 +18,11 @@ public class Main{
 
 			switch(input){
 				case 1:
-					
+					int infos[];
+					System.out.println("OPTION 1 - ACCESSING YOUR ACCOUNT\n");
+						
+					infos = accountAccessData(stream);					
+
 					break;
 				case 2:
 					break;
@@ -85,7 +89,7 @@ public class Main{
 	}
 
 	private CustomerModel customerAccess(AccountModel account, String cpf){
-		CustomerModel customer = account.getCustomerByCPf(cpf);
+		CustomerModel customer = account.getCustomerByCPF(cpf);
 
 		return customer;
 	}

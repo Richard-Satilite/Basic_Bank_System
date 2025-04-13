@@ -11,7 +11,7 @@ public class AccountModel{
 	private ArrayList<CustomerModel> customers;
 
 	public AccountModel(){
-		this.code = getRandomCode();
+		this.accountCode = getRandomCode();
 		this.balance = 0;
 		this.customers = new ArrayList<>();
 	}
@@ -63,7 +63,7 @@ public class AccountModel{
 
 	public void deposit(double amount){
 		if(amount > 0){
-			this.balance += amount
+			this.balance += amount;
 		} else{
 			System.out.println("Incorrect deposit amount!");
 		}
@@ -71,7 +71,7 @@ public class AccountModel{
 
 	public void transferAmount(double amount, AccountModel accountToTransfer){
 		
-		if(accountTotransfer != null && withdraw(amount) != -1){
+		if(accountToTransfer != null && withdraw(amount) != -1){
 			accountToTransfer.deposit(amount);
 			System.out.println("Successful deposit!");
 		} else{

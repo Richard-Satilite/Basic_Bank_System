@@ -7,8 +7,8 @@ public class AgencyModel{
 	private int agencyCode;
 	private ArrayList<AccountModel> accounts;
 
-	public AgencyModel(int code){
-		this.code = code;
+	public AgencyModel(int agencyCode){
+		this.agencyCode = agencyCode;
 		this.accounts = new ArrayList<>();
 	}
 

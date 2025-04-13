@@ -12,7 +12,7 @@ public class CustomerModel{
 	public CustomerModel(String name, String cpf){
 		if(name != null && !name.isEmpty() && ValidCPF.isValid(cpf)){
 			this.name = name;
-			this.cpf = cpf.replaceAll("[^0-9], "");
+			this.cpf = cpf.replaceAll("[^0-9]", "");
 			this.accounts = new ArrayList<>();
 		} else{
 			System.out.println("Customer informations is invalid!");
@@ -20,9 +20,9 @@ public class CustomerModel{
 	}
 
 	public void printStatement(int accountCode){
-		Account account = null;
+		AccountModel account = null;
 		
-		for(Account acc : accounts){
+		for(AccountModel acc : accounts){
 			if(acc.getAccountCode() == accountCode){
 				account = acc;
 				break;
@@ -56,6 +56,6 @@ public class CustomerModel{
 	}
 
 	public String getCPF(){
-		return this.CPF;
+		return this.cpf;
 	}
 }

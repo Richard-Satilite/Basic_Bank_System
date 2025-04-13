@@ -32,6 +32,7 @@ public class BankModel{
 		AgencyModel agency = new AgencyModel(agencyCode);
 
 		this.agencies.add(agency);
+		return true;
 	}
 
 	public boolean removeAgency(int agencyCode){
@@ -62,13 +63,13 @@ public class BankModel{
 	public void listAgencies(){
 		System.out.println("Agencies of the " + this.bankName + " bank:\n");
 
-		System.out.println("\---------------------------------\");
+		System.out.println("|---------------------------------|");
 
 		for(AgencyModel agy : this.agencies){
-			System.out.println("Agency Code: " + agy.getAgencyCode() "\n");
+			System.out.println("Agency Code: " + agy.getAgencyCode() + "\n");
 		}
 
-		System.out.println("\---------------------------------\");
+		System.out.println("|---------------------------------|");
 	}
 
 	public String getBankName(){
