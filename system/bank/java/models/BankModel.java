@@ -16,6 +16,8 @@ public class BankModel{
 			for(int i = 1; i < 6; i++){
 				agencies.add(new AgencyModel(i));
 			}
+		} else{
+			System.out.println("Bank name invalid!");
 		}
 	}
 
