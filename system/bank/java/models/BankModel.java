@@ -17,7 +17,7 @@ public class BankModel{
 				agencies.add(new AgencyModel(i));
 			}
 		} else{
-			System.out.println("Bank name invalid!");
+			System.out.println("Error while generating bank:\nInvalid bank name!");
 		}
 	}
 
