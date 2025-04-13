@@ -1,3 +1,4 @@
+
 package models;
 
 import java.util.ArrayList;
@@ -79,9 +80,14 @@ public class AccountModel{
 	}
 
 	public CustomerModel getCustomerByCPF(String CPF){
-		for(CustomerModel ctm : this.customers){
-			if(ctm.getCPF().equals(CPF)){
-				return ctm;
+		
+		String filteredCPF = CPF != null && !CPF.isEmpty() ? CPF.replaceAll("[^0-9]", "") : null;
+
+		if(filteredCPF != null){
+			for(CustomerModel ctm : this.customers){
+				if(ctm.getCPF().equals(filteredCPF)){
+					return ctm;
+				}
 			}
 		}
 

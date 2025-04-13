@@ -38,14 +38,25 @@ public class BankModel{
 		return this.agencies.removeIf(agy -> agy.getAgencyCode() == agencyCode);
 	}
 
-	public boolean searchAgency(int agencyCode){
+	private AgencyModel searchAgency(int agencyCode){
 		for(AgencyModel agy : this.agencies){
 			if(agy.getAgencyCode() == agencyCode){
-				return true;
+				return agy;
 			}
 		}
 
-		return false;
+		return null;
+	}
+
+	public AccountModel getAccount(int agencyCode, int accountCode){
+		
+		AgencyModel agency = searchAgency(agencyCode);		
+
+		if(agency != null){
+			return agency.getAccountByCode(accountCode);
+		}
+
+		return null;
 	}
 
 	public void listAgencies(){
@@ -58,5 +69,9 @@ public class BankModel{
 		}
 
 		System.out.println("\---------------------------------\");
+	}
+
+	public String getBankName(){
+		return this.bankName;
 	}
 }
