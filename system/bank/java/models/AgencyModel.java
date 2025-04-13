@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AgencyModel{
 
-	private int code;
+	private int agencyCode;
 	private ArrayList<AccountModel> accounts;
 
 	public AgencyModel(int code){
@@ -12,6 +12,10 @@ public class AgencyModel{
 		this.accounts = new ArrayList<>();
 	}
 
+
+	public int getAgencyCode(){
+		return this.agencyCode;
+	}
 
 	public boolean addAccount(AccountModel account){
 		
