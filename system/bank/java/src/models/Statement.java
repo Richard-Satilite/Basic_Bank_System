@@ -12,7 +12,7 @@ public class Statement{
 
 
 	public void genContent(double balance, String customerName){
-		this.content = """
+		this.content = String.format("""
 			***************************
 				Statement
 			***************************
@@ -22,7 +22,7 @@ public class Statement{
 			
 
 			---------------------------
-		""".format(customerName, balance);
+		""", customerName, balance);
 	}
 
 	public void exportToPDF(){

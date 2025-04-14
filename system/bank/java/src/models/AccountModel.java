@@ -69,14 +69,17 @@ public class AccountModel{
 		}
 	}
 
-	public void transferAmount(double amount, AccountModel accountToTransfer){
+	public boolean transferAmount(double amount, AccountModel accountToTransfer){
 		
 		if(accountToTransfer != null && withdraw(amount) != -1){
 			accountToTransfer.deposit(amount);
 			System.out.println("Successful deposit!");
+			return true;
 		} else{
 			System.out.println("Failed transfer! Check the amount value or if the account is correct.");
 		}
+
+		return false;
 	}
 
 	public CustomerModel getCustomerByCPF(String CPF){
@@ -94,14 +97,11 @@ public class AccountModel{
 		return null;
 	}
 
-	public String genStatement(String name){
+	public Statement genStatement(String name){
 		
-		String content;
 		Statement statement = new Statement();
 		statement.genContent(this.balance, name);
 
-		content = statement.getContent();
-
-		return content;
+		return statement;
 	}
 }

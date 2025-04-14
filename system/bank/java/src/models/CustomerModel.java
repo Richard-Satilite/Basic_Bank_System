@@ -19,20 +19,12 @@ public class CustomerModel{
 		}
 	}
 
-	public void printStatement(int accountCode){
-		AccountModel account = null;
+	public void printStatement(Statement statement){
 		
-		for(AccountModel acc : accounts){
-			if(acc.getAccountCode() == accountCode){
-				account = acc;
-				break;
-			}
-		}
-		
-		if(account != null){
-			Printer.printContent(account.genStatement(this.name));
+		if(statement != null){
+			Printer.printContent(statement.getContent());
 		} else{
-			System.out.println("There's no account with code: " + accountCode);
+			System.out.println("There's no statement");
 		}
 	}
 
@@ -57,5 +49,11 @@ public class CustomerModel{
 
 	public String getCPF(){
 		return this.cpf;
+	}
+
+	public void setCPF(String cpf){
+		if(ValidCPF.isValid(cpf)){
+			this.cpf = cpf.replaceAll("[^0-9]", "");
+		}
 	}
 }

@@ -60,16 +60,30 @@ public class BankModel{
 		return null;
 	}
 
-	public void listAgencies(){
+	public boolean addAccountInAgency(int agencyCode, AccountModel account){
+		for(AgencyModel agy : this.agencies){
+			if(agy.getAgencyCode() == agencyCode){
+				return agy.addAccount(account);
+			}
+		}
+
+		return false;
+	}
+
+	public ArrayList<Integer> listAgencies(){
+		ArrayList<Integer> agencyCodes = new ArrayList<>();
 		System.out.println("Agencies of the " + this.bankName + " bank:\n");
 
 		System.out.println("|---------------------------------|");
 
 		for(AgencyModel agy : this.agencies){
 			System.out.println("Agency Code: " + agy.getAgencyCode() + "\n");
+			agencyCodes.add(agy.getAgencyCode());
 		}
 
 		System.out.println("|---------------------------------|");
+
+		return agencyCodes;
 	}
 
 	public String getBankName(){
